@@ -5,37 +5,42 @@ class game
 {
     private $orderus;
     private $beast;    
-    static $maxTurns = 20; 
+    private $maxTurns; 
     
-    public function __construct(orderus $orderus, beast $beast)
+    public function __construct(orderus $orderus, beast $beast, int $maxTurns)
     {
         $this->orderus  = $orderus;
         $this->beast    = $beast; 
-    }
+        $this->maxTurns = $maxTurns;
 
+    }
   
-    
+/*
+*   Counts the hit damage & set new health for the opponent  
+*/
     private function battle() 
     {   
         switch ($this->orderus->getAttack()) {
             case true:                
                 $hit = $this->orderus->getStrength() - $this->beast->getDefence(); 
-                print $this->orderus->strike($hit, $this->beast) . "\n";             
+                print "\n".$this->orderus->strike($hit, $this->beast);             
                 $this->orderus->setAttack(false);
-                $this->beast->setAttack(true);
-                
+                $this->beast->setAttack(true);           
             break;
             case false:                
                 $hit = $this->beast->getStrength() - $this->orderus->getDefence(); 
                 $this->orderus->magicShield($hit);
-                print "Beast attack, damege is: ".$hit ."\n";                                
+                print "\nBeast attack, damege is: ".$hit ;                                
                 $this->beast->setAttack(false);
                 $this->orderus->setAttack(true);
                 $this->orderus->setHealth($hit);
-                break;        
-            
+                print "\nHealth of the orders after the attack: \t" . $this->orderus->getHealth();
+            break;                   
         }
     }
+/*
+*   Finds the player who starting the battle & run battle method until the fight to be resolve.
+*/
     public function start(){
         print $this->orderus->printStats();
         print $this->beast->printStats();
@@ -45,12 +50,12 @@ class game
         if ($orderusSpeed > $beastSpeed) 
         {
             $this->orderus->setAttack(true);     
-            print  "orderus begin the battle \n";     
+            print  "Orderus begin the battle \n";     
 
         } elseif ($orderusSpeed < $beastSpeed)
         {
             $this->beast->setAttack(true);
-            print "beast begin the battle \n";
+            print "Beast begin the battle \n";
 
         } 
         else 
@@ -69,18 +74,17 @@ class game
                 $this->beast->setAttack(true);
                 
             }
-        }
+        }        
         
-        
-        while (self::$maxTurns > 0) {
-            self::$maxTurns--;            
+        while ($this->maxTurns > 0) {            
+            $this->maxTurns--;            
             $this->battle();            
             sleep(1);
             if($this->orderus->getHealth() <= 0){
-                print 'Orderus is dead';
+                print "\nBeast won a battle";
                 die();
             } elseif($this->beast->getHealth() <= 0) {
-                print 'Beast is dead';
+                print "\nOrderus won a battle";
                 die();
             }            
         }

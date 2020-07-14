@@ -1,4 +1,4 @@
-## THESE ARE THE BASIC FOR TOURNAMENT BASED GAME
+# THESE ARE THE BASIC FOR TOURNAMENT BASED GAME
 
 In my approach I used OOP & fabric pattern, also I decided to use PHP in the console. 
 

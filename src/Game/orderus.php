@@ -15,15 +15,16 @@ class orderus extends abstractCharacters
      
     }
 
+    // ORDERUS SKILLS
     public function strike(int $hit, beast $beast) :string
     {
         if (random_int(1,100) < 10) {
               $beast->setHealth($hit + $hit);                          
-              return 'Orderus use rapid strike skill and atack twice damage is:'. " " . $hit;
+              return "\n Orderus use rapid strike skill and atack twice damage is:". " " . $hit ."\nHealth of the beast after the attack: \t" . $beast->getHealth();
               
         } else {              
             $beast->setHealth($hit);            
-            return 'Orderus atack and hits, damage is:'. " " . $hit;
+            return "\nOrderus atack and hits, damage is:". " " . $hit ."\nHealth of the beast after the attack: \t" . $beast->getHealth();
         }   
     }
 
@@ -32,7 +33,7 @@ class orderus extends abstractCharacters
 
         if (random_int(1,100) < 20) {            
             $hit = $hit /2;
-            print "Orderus use magic shield skill and take only half of damage (". $hit.")\n";
+            print "\nOrderus use magic shield skill and take only half of damage (". $hit.")";
             return $hit;
       } else {
           return $hit;

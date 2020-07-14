@@ -16,23 +16,18 @@ abstract class AbstractCharacters implements featuresInterface
     {
         $this->name = $name;
     }    
-    
+
+    // GETTERS
+
     public function getHealth() : int
     {
-        return $this->health;
+        if($this->health >= 0) {
 
-    }
+            return $this->health;
+        } else {
+            return 0;
+        }
 
-    public function setHealth(int $hit) : void
-    {
-        if (random_int(1,100) < $this->getLuck()) 
-        {
-            print $this->name. " " .  "was lucky and not injured! \n";
-            
-        } else 
-        {
-            $this->health -= $hit;        
-      }
     }
 
     public function getStrength() : int
@@ -62,10 +57,28 @@ abstract class AbstractCharacters implements featuresInterface
         return $this->attack;
 
     }
+    
+    // SETTERS
+    
     public function setAttack(bool $bool) : void
     {
         $this->attack = $bool;
     }
+    
+    public function setHealth(int $hit) : void
+    {
+        if (random_int(1,100) < $this->getLuck()) 
+        {
+            print "\n" . $this->name. " " .  "was lucky and not injured! \n";
+            
+        } else 
+        {
+            $this->health -= $hit;        
+      }
+    }
+
+    // REST 
+    
     public function printStats() : string
     {
         return $this->name . "statics: \n".
