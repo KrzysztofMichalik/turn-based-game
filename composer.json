@@ -1,0 +1,15 @@
+{
+    "name": "krzysztof/emag",
+    "authors": [
+        {
+            "name": "Krzysztof Michalik",
+            "email": "krzysztof.michalik01@gmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4": {
+            "Emagia\\": "src/"
+        }
+      },
+    "require": {}
+}
